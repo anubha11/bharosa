@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: theme('colors.canvas');
+  font-family: theme('fontFamily.sans');
+  color: theme('colors.navy');
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: theme('colors.accent');
+  text-decoration: none;
+}
+
+/* Hide scrollbars inside the app column for a native-app feel */
+.no-scrollbar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+/* Numbers, IDs and mono accents */
+.tnum {
+  font-family: theme('fontFamily.mono');
+  font-feature-settings: 'tnum';
+}
