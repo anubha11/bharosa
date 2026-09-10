@@ -37,7 +37,7 @@ export default function QuoteReveal() {
       </Body>
 
       <Footer>
-        <Button onClick={() => navigate('/compare/table')}>Compare these three</Button>
+        <Button onClick={() => navigate('/compare')}>Compare these three</Button>
         <Button variant="ghost" onClick={() => navigate('/advisory/intake')}>
           Ask {BRAND.aiAdvisor} something first
         </Button>

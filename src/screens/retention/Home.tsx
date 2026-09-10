@@ -9,7 +9,16 @@ export default function Home() {
   const navigate = useNavigate()
   const policy = useStore((s) => s.policy)!
   const firstName = useStore((s) => s.profile.fullName.split(' ')[0])
+  const claim = useStore((s) => s.claim)
   const plan = planById(policy.planId)
+
+  const claimInFlight = claim.history.length > 0 && claim.status !== 'settled'
+  const claimStatusLabel: Record<string, string> = {
+    submitted: 'Submitted — with the insurer',
+    'pre-approved': 'Pre-approval granted',
+    'query-raised': 'One document needed',
+    'under-review': 'Under final review',
+  }
 
   const actions = [
     { label: 'Talk to advisor', to: '/advisory/intake' },
@@ -49,6 +58,33 @@ export default function Home() {
             </Link>
           </div>
         </div>
+
+        {claimInFlight && (
+          <button
+            onClick={() => navigate('/claims/tracker')}
+            className="mt-3 w-full rounded-[18px] bg-white p-4 text-left shadow-[0_1px_2px_rgba(16,24,40,.05)]"
+          >
+            <div className="flex items-center justify-between">
+              <span
+                className={[
+                  'rounded-full px-2.5 py-1.5 text-[11px] font-extrabold',
+                  claim.status === 'query-raised'
+                    ? 'bg-amberwash text-[#8a5a00]'
+                    : 'bg-wash text-ink',
+                ].join(' ')}
+              >
+                CLAIM {claim.id}
+              </span>
+              <span className="text-[13px] font-bold text-accent">Track →</span>
+            </div>
+            <div className="pt-2.5 text-[14px] font-bold text-navy">
+              {claimStatusLabel[claim.status] ?? 'In progress'}
+            </div>
+            <div className="pt-1 text-[12.5px] text-muted">
+              {claim.patient} · {claim.hospital} · ₹{inr(claim.claimedAmount)} claimed
+            </div>
+          </button>
+        )}
 
         <div className="flex gap-2.5 pt-4">
           {actions.map((a) => (

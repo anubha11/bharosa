@@ -46,7 +46,7 @@ export default function SelectionConfirm() {
 
       <Footer>
         <Button onClick={() => navigate('/buy/details')}>Yes — let’s set it up</Button>
-        <Button variant="ghost" onClick={() => navigate('/compare/table')}>
+        <Button variant="ghost" onClick={() => navigate('/compare')}>
           Go back to comparison
         </Button>
       </Footer>
