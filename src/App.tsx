@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { ROUTES } from './routes'
 import DevIndex from './screens/DevIndex'
+import ScreenNav from './components/ScreenNav'
 
 /** Scroll the app column back to the top on every route change. */
 function ScrollReset() {
@@ -23,6 +24,7 @@ export default function App() {
         <Route path="/dev" element={<DevIndex />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      <ScreenNav />
     </>
   )
 }
